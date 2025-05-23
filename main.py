@@ -1,17 +1,13 @@
-from config import GEMINI_API_KEY
+from slack_bolt import App
+from config import SLACK_AUTH_TOKEN, SLACK_SIGNING_SECRET
 
-from google import genai
-
-client = genai.Client(api_key=GEMINI_API_KEY)
-
-model = "gemini-2.0-flash"
-slack_message = "課題を終わらせた！"
-
-def get_prompt(message):
-  return f"あなたは日本語のプロンプトを受け取ります。{message}に対して、褒めてください。なるべく自己肯定感を高めて、次も頑張ろうと思えるような内容にしてください。"
-
-response = client.models.generate_content(
-  model=model, contents=get_prompt(slack_message)
+app = App(
+  token=SLACK_AUTH_TOKEN,
+  signing_secret=SLACK_SIGNING_SECRET
 )
 
-print(response.text)
+@app.event("/reaction_added")
+def event(event, say):
+  # 特定のメッセージに返信したい
+  response = "test"
+  say(text=response, thread_ts=event["ts"])
