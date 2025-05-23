@@ -29,7 +29,6 @@ def handle_reaction(event, client, logger):
 
   messages = result.get("messages", [])
   if not messages:
-    logger.warn("Message not found.")
     return
   
   message_timestamp = messages[0]["ts"]
@@ -38,7 +37,6 @@ def handle_reaction(event, client, logger):
   replied_messages.add(message_timestamp)
   
   original_message = messages[0]["text"]
-  logger.info(f"Original message: {original_message}")
 
   gemini_response = gemini_senpai.send(original_message)
 
