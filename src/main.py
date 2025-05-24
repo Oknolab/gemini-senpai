@@ -1,5 +1,5 @@
 from slack_bolt import App
-from config import SLACK_AUTH_TOKEN, SLACK_SIGNING_SECRET, SLACK_APP_TOKEN
+from config import SLACK_AUTH_TOKEN, SLACK_APP_TOKEN
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from gemini_senpai import GeminiSenpai
 
